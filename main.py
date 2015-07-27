@@ -43,8 +43,7 @@ class MainHandler(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('templates/index.html')
         self.response.write(template.render())
 
-        krebs = Family(fridge_name = 'Krebs\' Fridge')
-        krebs_key = krebs.put()
+        krebs_key = (Family(fridge_name = 'Krebs\' Fridge')).put()
         carly = Person(fridge_key = krebs_key, first_name = 'Carly', last_name = 'Krebs')
         carly.put()
 
@@ -53,15 +52,27 @@ class NewFridge(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('templates/newFridge.html')
         self.response.write(template.render())
 
+
 ##this will post out the ID number for a family when a new fridge is created
 class FamilyID(webapp2.RequestHandler):
     def post(self):
+        nameforFID = self.request.get("fridge_name")
+        nameforFID_key = (Family(fridge_name = nameforFID).put())
         template = jinja_environment.get_template('templates/FamilyID.html')
-        self.response.write(template.render({'Family_ID': krebs_key.id()}))
+        self.response.write(template.render({'Family_ID': nameforFID_key.id()}))
 
+class PersonID(webapp2.RequestHandler):
+    def post(self):
+        fridge_key = self.request.get("fridge_key")
+        user_first = self.request.get("user_first")
+        user_last = self.request.get("user_last")
+        nameforPID_key = (Person(fridge_key = fridge_key, first_name = user_first, last_name = user_last).put())
+        template = jinja_environment.get_template('templates/thankyou.html')
+        self.response.write(template.render({'user_first': user_first, 'user_last': user_last}))
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/newFridge', NewFridge),
-    ('/FamilyID', FamilyID)
+    ('/FamilyID', FamilyID),
+    ('/PersonID', PersonID),
 ], debug=True)
