@@ -49,7 +49,8 @@ class Person(ndb.Model):
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('templates/index.html')
-        template = jinja_environment.get_template('google_test.html')
+        '''
+         template = jinja_environment.get_template('google_test.html')
         #self.response.write('Welcome!')
         user = users.get_current_user()
         #UserId = user.user_id()
@@ -68,7 +69,8 @@ class MainHandler(webapp2.RequestHandler):
 
 
         self.response.out.write('<html><body>%s</body></html>' % greeting)
-        template = JINJA_ENVIRONMENT.get_template('templates/newUser.html')
+        '''
+        template = JINJA_ENVIRONMENT.get_template('templates/index.html')
         self.response.write(template.render())
 
 class NewUser(webapp2.RequestHandler):
