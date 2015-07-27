@@ -40,7 +40,7 @@ class Person(ndb.Model):
 ##manually creates a user in the database
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('templates/newUser.html')
+        template = JINJA_ENVIRONMENT.get_template('templates/index.html')
         self.response.write(template.render())
 
 class NewUser(webapp2.RequestHandler):
