@@ -43,6 +43,10 @@ class MainHandler(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('templates/newUser.html')
         self.response.write(template.render())
 
+class NewUser(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('templates/newUser.html')
+        self.response.write(template.render())
 
 class NewFridge(webapp2.RequestHandler):
     def get(self):
@@ -69,6 +73,7 @@ class PersonID(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
+    ('/newUser', NewUser),
     ('/newFridge', NewFridge),
     ('/FamilyID', FamilyID),
     ('/PersonID', PersonID),
