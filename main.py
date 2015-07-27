@@ -17,8 +17,12 @@
 import jinja2
 import os
 import webapp2
-import jinja2
-import os
+
+
+import logging
+from google.appengine.ext import ndb
+from google.appengine.api import users
+
 
 JINJA_ENVIRONMENT = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
@@ -41,7 +45,24 @@ class Person(ndb.Model):
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('templates/index.html')
-        self.response.write(template.render())
+        user = users.get_current_user()
+        if user:
+            #Signed In
+            greeting = (' Welcome, %s! (<a href="%s">sign out</a>)' %
+                        (user.user_id(), users.create_logout_url('/')))
+                        #(user.nickname(), users.create_logout_url('/')))
+
+        else:
+            #Signed Out and NEED to Sign In
+            greeting = ('<a href="%s">Sign in or register</a>.' %
+                        users.create_login_url('/'))
+
+
+        self.response.out.write('<html><body>%s</body></html>' % greeting)
+
+        template = JINJA_ENVIRONMENT.get_template('templates/index.html')
+        #self.response.write(template.render())
+
 
 class NewUser(webapp2.RequestHandler):
     def get(self):
