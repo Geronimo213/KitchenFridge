@@ -46,7 +46,7 @@ class MainHandler(webapp2.RequestHandler):
 class FamilyID(webapp2.RequestHandler):
     def post(self):
         template = jinja_environment.get_template('templates/FamilyID.html')
-        self.response.write(template.render({'Family_ID': krebs_key.id()})
+        self.response.write(template.render({'Family_ID': krebs_key.id()}))
 
 
 app = webapp2.WSGIApplication([
