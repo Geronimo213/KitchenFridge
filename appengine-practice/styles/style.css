@@ -1,0 +1,14 @@
+#title{
+  position: relative;
+  color: darkred;
+  font-size: 60px;
+  text-align: center;
+  padding-bottom: 50px;
+}
+#you_will_try{
+  position: relative;
+  text-align: center;
+  width: 25%;
+  left: 37.5%;
+  border: 10px red double;
+}

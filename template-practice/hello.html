@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Howdy</title>
+    <script>
+    function location_get(){
+      var url = window.location.href;
+        if (url.indexOf('?') > -1){
+          if (url.indexOf('hl') >= 0){
+            return;
+          }
+          else{
+            url += '&hl=' + navigator.language;
+          }
+        }
+        else{
+          url += '?hl=' + navigator.language;
+        }
+
+      window.location.href = url;
+    }
+    </script>
+  </head>
+  <body onload="location_get()">
+    <h1>{{greeting}} {{name}}!</h1>
+    <img height="100px" width="150px" src="https://blackgeoscientists.files.wordpress.com/2014/06/helloworld.jpg" alt="A cute Pic of a Dude on the World">
+    <h2>{{how_are_you}}</h2>
+  </body>
+</html>
