@@ -40,12 +40,9 @@ class Person(ndb.Model):
 ##manually creates a user in the database
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('templates/index.html')
+        template = JINJA_ENVIRONMENT.get_template('templates/newUser.html')
         self.response.write(template.render())
 
-        krebs_key = (Family(fridge_name = 'Krebs\' Fridge')).put()
-        carly = Person(fridge_key = krebs_key, first_name = 'Carly', last_name = 'Krebs')
-        carly.put()
 
 class NewFridge(webapp2.RequestHandler):
     def get(self):
@@ -63,7 +60,7 @@ class FamilyID(webapp2.RequestHandler):
 
 class PersonID(webapp2.RequestHandler):
     def post(self):
-        fridge_key = self.request.get("fridge_key")
+        fridge_key = ndb.Key(Family, int(self.request.get("fridge_key")))
         user_first = self.request.get("user_first")
         user_last = self.request.get("user_last")
         nameforPID_key = (Person(fridge_key = fridge_key, first_name = user_first, last_name = user_last).put())
