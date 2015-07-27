@@ -15,11 +15,21 @@
 # limitations under the License.
 #
 import webapp2
+import jinja2
+import os
+
+JINJA_ENVIRONMENT = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Hello world!')
+        template = JINJA_ENVIRONMENT.get_template('templates/index.html')
+        self.response.write(template.render())
+class NewFridge(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('templates/newFridge.html')
+        self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),
+    ('/newFridge', NewFridge)
 ], debug=True)
