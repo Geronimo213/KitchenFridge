@@ -4,14 +4,24 @@
   </head>
   <body>
       <!-- This form accepts the username and password and posts the information to the MainHandler. We could use a login handler later if we wanted to. -->
-      <form method="post" action="PersonID">
-        First Name: <input type="text" name="user_first">
+      <script src="javascript/matchpass.js"></script>
+      <form method="post" action="PersonID" onsubmit="return checkForm(this);">
+        Email Address: <input type="email" name="email" required="on">
         <br>
         <br>
-        Last Name: <input type="text" name="user_last">
+        Password: <input type="password" name="password" autocomplete="off" required="on">
         <br>
         <br>
-        Fridge Key: <input type="text" name="fridge_key">
+        Confirm Password: <input type="password" name="cpassword" autocomplete="off" required="on">
+        <br>
+        <br>
+        First Name: <input type="text" name="user_first" required="on">
+        <br>
+        <br>
+        Last Name: <input type="text" name="user_last" required="on">
+        <br>
+        <br>
+        Fridge Key: <input type="number" name="fridge_key" required="on">
         <br>
         <br>
         <input type="submit" value="Login">

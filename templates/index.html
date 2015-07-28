@@ -5,23 +5,13 @@
   <body>
     <h1>Sign In</h1>
     <br>
-    <form method "post">
-      Enter Email Address <input type = "text" name= "Username" autocomplete="on"> <br>
+    <form method "post" action="/fridgeHome">
+      Enter Email Address <input type = "text" name= "Username" autocomplete="on" required="on"> <br>
       Enter Password <input type = "password" name= "Password" autocomplete="off"required="on"><br>
-      <input type = "submit" onclick="check(this.form)" value="Login">
+      <input type = "submit" value="Login">
       <input type = "reset" value="Cancel">
     </form>
-    <script language="javascript">
-            function check(form) { /*function to check userid & password*/
-                /*the following code checkes whether the entered Username and Password are matching*/
-                if(form.Username.value == form.Password.value) {
-                    window.open('/fridgeHome.html')/*opens the target page while Id & password matches*/
-                }
-                else {
-                    alert("Error Password or Username")/*displays error message*/
-                }
-            }
-    </script>
+
     <br>
     <h2>First Time?</h2>
     <br>
