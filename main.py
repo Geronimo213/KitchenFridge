@@ -105,16 +105,16 @@ class PersonID(webapp2.RequestHandler):
 
 class FridgePage(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('templates/fridgePage.html')
-        self.response.write(template.render())
-    def post(self):
         global fridgeposts
-        fridgeposts = []
+        fridgeposts = ['This is the default message']
+        template = JINJA_ENVIRONMENT.get_template('templates/fridgePage.html')
+        self.response.write(template.render(fridgeposts = fridgeposts))
+    def post(self):
         new_post = self.request.get('post')
         fridgeposts.append(str(new_post))
         logging.info(fridgeposts)
         template = JINJA_ENVIRONMENT.get_template('templates/fridgePage.html')
-        self.response.write(template.render())
+        self.response.out.write(template.render(fridgeposts = fridgeposts))
 
 
 app = webapp2.WSGIApplication([
