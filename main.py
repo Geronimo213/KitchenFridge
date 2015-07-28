@@ -39,6 +39,8 @@ class Person(ndb.Model):
     person_id = ndb.StringProperty()
     first_name = ndb.StringProperty(required=True)
     last_name = ndb.StringProperty(required=True)
+    email = ndb.StringProperty(required=True)
+    password = ndb.StringProperty(required=True)
 
 ##manually creates a user in the database
 class MainHandler(webapp2.RequestHandler):

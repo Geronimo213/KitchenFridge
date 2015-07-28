@@ -5,11 +5,16 @@
   <body>
     <h1>Sign In</h1>
     <br>
-    <!-- Login will go here if we don't require login immediately -->
+    <form method "post" action="/fridgeHome">
+      Enter Email Address <input type = "text" name= "Username"> <br>
+      Enter Password <input type = "password" name= "Password"> <br>
+      <input type = "submit">
+    </form>
     <br>
     <h2>First Time?</h2>
     <br>
     <br>
+
     <form method="get" action="/newFridge">
       <input type="submit" value="Don't have a key?">
     </form>
