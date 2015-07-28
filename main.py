@@ -17,8 +17,6 @@
 import jinja2
 import os
 import webapp2
-import jinja2
-import os
 
 import logging
 from google.appengine.ext import ndb
@@ -26,8 +24,6 @@ from google.appengine.api import users
 
 
 JINJA_ENVIRONMENT = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
-
-from google.appengine.ext import ndb
 
 jinja_environment = jinja2.Environment(loader=
     jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -51,6 +47,9 @@ class MainHandler(webapp2.RequestHandler):
 ##        template = JINJA_ENVIRONMENT.get_template('templates/index.html')
 ##        user = users.get_current_user()
 ##        if user:
+
+
+
             #Signed In
             #greeting = (' Welcome, %s! (<a href="%s">sign out</a>)' %
 ##                        (user.user_id(), users.create_logout_url('/')))
@@ -58,8 +57,11 @@ class MainHandler(webapp2.RequestHandler):
 
 ##        else:
             #Signed Out and NEED to Sign In
+
 ##            greeting = ('<a href="%s">Sign in or register</a>.' %
 ##                        users.create_login_url('/'))
+
+
 
         template = JINJA_ENVIRONMENT.get_template('templates/index.html')
         self.response.write(template.render())
@@ -76,7 +78,7 @@ class NewFridge(webapp2.RequestHandler):
 
 
 ##this will post out the ID number for a family when a new fridge is created
-fridgeposts = [] ##This is a global variable that we will use for the different posts on the fridge
+ ##This is a global variable that we will use for the different posts on the fridge
 class FamilyID(webapp2.RequestHandler):
     def post(self):
         nameforFID = self.request.get("fridge_name")
@@ -98,9 +100,14 @@ class FridgePage(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('templates/fridgePage.html')
         self.response.write(template.render())
     def post(self):
+        global fridgeposts
+        fridgeposts = []
+        new_post = self.request.get('post')
+        fridgeposts.append(str(new_post))
+        logging.info(fridgeposts)
         template = JINJA_ENVIRONMENT.get_template('templates/fridgePage.html')
-        self.request.get(template.render())
-        fridgeposts.append()
+        self.response.write(template.render())
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
@@ -109,4 +116,5 @@ app = webapp2.WSGIApplication([
     ('/FamilyID', FamilyID),
     ('/PersonID', PersonID),
     ('/Fridge', FridgePage),
+
 ], debug=True)
