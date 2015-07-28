@@ -47,7 +47,7 @@ class Person(ndb.Model):
 ##manually creates a user in the database
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('templates/index.html')
+        '''template = JINJA_ENVIRONMENT.get_template('templates/index.html')
         user = users.get_current_user()
         if user:
             #Signed In
@@ -58,7 +58,7 @@ class MainHandler(webapp2.RequestHandler):
         else:
             #Signed Out and NEED to Sign In
             greeting = ('<a href="%s">Sign in or register</a>.' %
-                        users.create_login_url('/'))
+                        users.create_login_url('/'))'''
 
         template = JINJA_ENVIRONMENT.get_template('templates/index.html')
         self.response.write(template.render())
@@ -75,7 +75,7 @@ class NewFridge(webapp2.RequestHandler):
 
 
 ##this will post out the ID number for a family when a new fridge is created
-fridgeposts = [] ##This is a global variable that we will use for the different posts on the fridge
+ ##This is a global variable that we will use for the different posts on the fridge
 class FamilyID(webapp2.RequestHandler):
     def post(self):
         nameforFID = self.request.get("fridge_name")
@@ -95,10 +95,15 @@ class PersonID(webapp2.RequestHandler):
 class FridgePage(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('templates/fridgePage.html')
-        self.response.write(template.render({posts = 'posts'}))
+        self.response.write(template.render())
     def post(self):
+        global fridgeposts
+        fridgeposts = []
+        new_post = self.request.get('post')
+        fridgeposts.append(str(new_post))
+        logging.info(fridgeposts)
         template = JINJA_ENVIRONMENT.get_template('templates/fridgePage.html')
-        self.request.get(template.render({fridgeposts.append('posts')}))
+        self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
@@ -106,4 +111,5 @@ app = webapp2.WSGIApplication([
     ('/newFridge', NewFridge),
     ('/FamilyID', FamilyID),
     ('/PersonID', PersonID),
+    ('/Fridge', FridgePage)
 ], debug=True)
