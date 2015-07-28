@@ -17,6 +17,8 @@
 import jinja2
 import os
 import webapp2
+import jinja2
+import os
 
 import logging
 from google.appengine.ext import ndb
@@ -24,6 +26,8 @@ from google.appengine.api import users
 
 
 JINJA_ENVIRONMENT = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+
+from google.appengine.ext import ndb
 
 jinja_environment = jinja2.Environment(loader=
     jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -39,29 +43,31 @@ class Person(ndb.Model):
     person_id = ndb.StringProperty()
     first_name = ndb.StringProperty(required=True)
     last_name = ndb.StringProperty(required=True)
-    email = ndb.StringProperty(required=True)
-    password = ndb.StringProperty(required=True)
 
 ##manually creates a user in the database
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-
-##        template = JINJA_ENVIRONMENT.get_template('templates/index.html')
-##        user = users.get_current_user()
-##        if user:
-
-
-
-            #Signed In
-            #greeting = (' Welcome, %s! (<a href="%s">sign out</a>)' %
-##                        (user.user_id(), users.create_logout_url('/')))
-                        #(user.nickname(), users.create_logout_url('/')))
-
-##        else:
-            #Signed Out and NEED to Sign In
-
-##            greeting = ('<a href="%s">Sign in or register</a>.' %
-##                        users.create_login_url('/'))
+        template = JINJA_ENVIRONMENT.get_template('templates/index.html')
+        #template = jinja_environment.get_template('userLogin.html')
+        #self.response.write('Welcome!')
+        # user = users.get_current_user()
+        # #UserId = user.user_id()
+        #
+        # #if UserID ==
+        # if user:
+        #     #Signed In
+        #     greeting = (' Welcome, %s! (<a href="%s">sign out</a>)' %
+        #                 #(user.user_id(), users.create_logout_url('/')))
+        #                 (user.nickname(), users.create_logout_url('/')))
+        #
+        # else:
+        #     #Signed Out and NEED to Sign In
+        #     greeting = ('<a href="%s">Sign in or register</a>.' %
+        #                 users.create_login_url('/'))
+        #
+        #
+        # self.response.out.write('<html><body>%s</body></html>' % greeting)
+        #template = JINJA_ENVIRONMENT.get_template('templates/newUser.html')
 
 
 
@@ -83,12 +89,14 @@ class FridgeHome(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('templates/fridgeHome.html')
         self.response.write(template.render())
 
+
+
 ##this will post out the ID number for a family when a new fridge is created
  ##This is a global variable that we will use for the different posts on the fridge
 class FamilyID(webapp2.RequestHandler):
     def post(self):
         nameforFID = self.request.get("fridge_name")
-        nameforFID_key = (Family(fridge_name = nameforFID, posts = fridgeposts).put())
+        nameforFID_key = (Family(fridge_name = nameforFID, posts = fridgeposts.put()))
         template = jinja_environment.get_template('templates/FamilyID.html')
         self.response.write(template.render({'Family_ID': nameforFID_key.id()}))
 
@@ -97,9 +105,7 @@ class PersonID(webapp2.RequestHandler):
         fridge_key = ndb.Key(Family, int(self.request.get("fridge_key")))
         user_first = self.request.get("user_first")
         user_last = self.request.get("user_last")
-        email = self.request.get("email")
-        password = self.request.get("password")
-        nameforPID_key = (Person(fridge_key = fridge_key, first_name = user_first, last_name = user_last, email = email, password = password).put())
+        nameforPID_key = (Person(fridge_key = fridge_key, first_name = user_first, last_name = user_last).put())
         template = jinja_environment.get_template('templates/thankyou.html')
         self.response.write(template.render({'user_first': user_first, 'user_last': user_last}))
 
@@ -116,14 +122,12 @@ class FridgePage(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('templates/fridgePage.html')
         self.response.out.write(template.render(fridgeposts = fridgeposts))
 
-
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/newUser', NewUser),
     ('/newFridge', NewFridge),
+    ('/fridgeHome', FridgeHome),
     ('/FamilyID', FamilyID),
     ('/PersonID', PersonID),
-    ('/Fridge', FridgePage),
-    ('fridgeHome', FridgeHome),
-
+    ('/Fridge', FridgePage)
 ], debug=True)
