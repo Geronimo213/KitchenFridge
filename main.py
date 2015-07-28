@@ -34,17 +34,19 @@ jinja_environment = jinja2.Environment(loader=
 ##creates a new fridge
 class Family(ndb.Model):
     fridge_name = ndb.StringProperty(required=True)
+    posts = ndb.StringProperty(repeated = True) ##To do more than one post
 
 ##creates a new person with access to a certain fridge
 class Person(ndb.Model):
     fridge_key = ndb.KeyProperty(kind='Family')
+    person_id = ndb.StringProperty()
     first_name = ndb.StringProperty(required=True)
     last_name = ndb.StringProperty(required=True)
 
 ##manually creates a user in the database
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        template = JINJA_ENVIRONMENT.get_template('templates/index.html')
+        '''template = JINJA_ENVIRONMENT.get_template('templates/index.html')
         user = users.get_current_user()
         if user:
             #Signed In
@@ -59,10 +61,9 @@ class MainHandler(webapp2.RequestHandler):
 
 
         self.response.out.write('<html><body>%s</body></html>' % greeting)
-
+'''
         template = JINJA_ENVIRONMENT.get_template('templates/index.html')
-        #self.response.write(template.render())
-
+        self.response.write(template.render())
 
 class NewUser(webapp2.RequestHandler):
     def get(self):
@@ -76,10 +77,11 @@ class NewFridge(webapp2.RequestHandler):
 
 
 ##this will post out the ID number for a family when a new fridge is created
+fridgeposts = [] ##This is a global variable that we will use for the different posts on the fridge
 class FamilyID(webapp2.RequestHandler):
     def post(self):
         nameforFID = self.request.get("fridge_name")
-        nameforFID_key = (Family(fridge_name = nameforFID).put())
+        nameforFID_key = (Family(fridge_name = nameforFID, posts = fridgeposts).put())
         template = jinja_environment.get_template('templates/FamilyID.html')
         self.response.write(template.render({'Family_ID': nameforFID_key.id()}))
 
@@ -91,6 +93,14 @@ class PersonID(webapp2.RequestHandler):
         nameforPID_key = (Person(fridge_key = fridge_key, first_name = user_first, last_name = user_last).put())
         template = jinja_environment.get_template('templates/thankyou.html')
         self.response.write(template.render({'user_first': user_first, 'user_last': user_last}))
+
+class FridgePage(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('templates/fridgePage.html')
+        self.response.write(template.render({posts = 'posts'}))
+    def post(self):
+        template = JINJA_ENVIRONMENT.get_template('templates/fridgePage.html')
+        self.request.get(template.render({fridgeposts.append('posts')}))
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
