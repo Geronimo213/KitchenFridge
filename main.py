@@ -17,7 +17,8 @@
 import jinja2
 import os
 import webapp2
-
+import jinja2
+import os
 
 import logging
 from google.appengine.ext import ndb
@@ -48,7 +49,7 @@ class MainHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if user:
             #Signed In
-            greeting = (' Welcome, %s! (<a href="%s">sign out</a>)' %
+            #greeting = (' Welcome, %s! (<a href="%s">sign out</a>)' %
                         (user.user_id(), users.create_logout_url('/')))
                         #(user.nickname(), users.create_logout_url('/')))
 
@@ -57,12 +58,8 @@ class MainHandler(webapp2.RequestHandler):
             greeting = ('<a href="%s">Sign in or register</a>.' %
                         users.create_login_url('/'))
 
-
-        self.response.out.write('<html><body>%s</body></html>' % greeting)
-
         template = JINJA_ENVIRONMENT.get_template('templates/index.html')
-        #self.response.write(template.render())
-
+        self.response.write(template.render())
 
 class NewUser(webapp2.RequestHandler):
     def get(self):
