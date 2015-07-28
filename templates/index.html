@@ -6,10 +6,12 @@
     <h1>Sign In</h1>
     <br>
     <form method "post" action="/fridgeHome">
-      Enter Email Address <input type = "text" name= "Username"> <br>
-      Enter Password <input type = "password" name= "Password"> <br>
-      <input type = "submit">
+      Enter Email Address <input type = "text" name= "Username" autocomplete="on" required="on"> <br>
+      Enter Password <input type = "password" name= "Password" autocomplete="off"required="on"><br>
+      <input type = "submit" value="Login">
+      <input type = "reset" value="Cancel">
     </form>
+
     <br>
     <h2>First Time?</h2>
     <br>
