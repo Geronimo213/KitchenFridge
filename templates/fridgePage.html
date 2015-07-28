@@ -1,0 +1,23 @@
+<html>
+  <head>
+      <title>KitchenFridge</title>
+  </head>
+  <body>
+      <div id="post_body" style="position: absolute; width: 70%; left: 15%; text-align: center;">
+
+        <h1>Welcome to your fridge!</h1>
+
+        {% for post in fridgeposts:%}
+          <div>
+            {{ post }}
+          </div>
+        {% endfor %}
+      </div>
+      <div id="side_menu" style="position: absolute; width: 15%; float: left;">
+        <form method="post">
+          <input type="text" name="post">
+          <input type="submit" value="Post it!">
+        </form>
+      </div>
+  </body>
+</html>
