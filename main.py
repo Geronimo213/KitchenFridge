@@ -85,6 +85,7 @@ class FridgeHome(webapp2.RequestHandler):
 
 ##this will post out the ID number for a family when a new fridge is created
  ##This is a global variable that we will use for the different posts on the fridge
+fridgeposts = [] ##just so it works
 class FamilyID(webapp2.RequestHandler):
     def post(self):
         nameforFID = self.request.get("fridge_name")
