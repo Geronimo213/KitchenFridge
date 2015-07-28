@@ -78,6 +78,10 @@ class NewFridge(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('templates/newFridge.html')
         self.response.write(template.render())
 
+class FridgeHome(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('templates/fridgeHome.html')
+        self.response.write(template.render())
 
 ##this will post out the ID number for a family when a new fridge is created
  ##This is a global variable that we will use for the different posts on the fridge
@@ -93,7 +97,9 @@ class PersonID(webapp2.RequestHandler):
         fridge_key = ndb.Key(Family, int(self.request.get("fridge_key")))
         user_first = self.request.get("user_first")
         user_last = self.request.get("user_last")
-        nameforPID_key = (Person(fridge_key = fridge_key, first_name = user_first, last_name = user_last).put())
+        email = self.request.get("email")
+        password = self.request.get("password")
+        nameforPID_key = (Person(fridge_key = fridge_key, first_name = user_first, last_name = user_last, email = email, password = password).put())
         template = jinja_environment.get_template('templates/thankyou.html')
         self.response.write(template.render({'user_first': user_first, 'user_last': user_last}))
 
@@ -118,5 +124,6 @@ app = webapp2.WSGIApplication([
     ('/FamilyID', FamilyID),
     ('/PersonID', PersonID),
     ('/Fridge', FridgePage),
+    ('fridgeHome', FridgeHome),
 
 ], debug=True)
