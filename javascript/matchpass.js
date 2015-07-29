@@ -1,5 +1,3 @@
-<script type="text/javascript">
-
 function checkForm(form)
 {
   if(form.password.value != form.cpassword.value){
@@ -7,5 +5,3 @@ function checkForm(form)
     return false;
   }
 }
-
-</script>

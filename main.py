@@ -36,37 +36,37 @@ class Family(ndb.Model):
 ##creates a new person with access to a certain fridge
 class Person(ndb.Model):
     fridge_key = ndb.KeyProperty(kind='Family')
-    person_id = ndb.StringProperty()
     first_name = ndb.StringProperty(required=True)
     last_name = ndb.StringProperty(required=True)
     email = ndb.StringProperty(required=True)
     password = ndb.StringProperty(required=True)
 
+class User(ndb.Model):
+    thing = ndb.KeyProperty()
+
+
 ##manually creates a user in the database
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-
-##        template = JINJA_ENVIRONMENT.get_template('templates/index.html')
-##        user = users.get_current_user()
-##        if user:
-
-
-
-            #Signed In
-            #greeting = (' Welcome, %s! (<a href="%s">sign out</a>)' %
-##                        (user.user_id(), users.create_logout_url('/')))
-                        #(user.nickname(), users.create_logout_url('/')))
-
-##        else:
-            #Signed Out and NEED to Sign In
-
-##            greeting = ('<a href="%s">Sign in or register</a>.' %
-##                        users.create_login_url('/'))
-
-
-
         template = JINJA_ENVIRONMENT.get_template('templates/index.html')
         self.response.write(template.render())
+
+class LoginHandler(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('templates/index.html')
+        user = users.get_current_user()
+        if user:
+            #Signed In
+            greeting = (' Welcome, %s! (<a href="%s">sign out</a>)' %
+                       #(user.user_id(), users.create_logout_url('/')))
+                       (user.nickname(), users.create_logout_url('/')))
+
+        else:
+            #Signed Out and NEED to Sign In
+
+            greeting = ('<a href="%s">Sign in or register</a>.' %
+                        users.create_login_url('/'))
+        self.response.write(greeting)
 
 class NewUser(webapp2.RequestHandler):
     def get(self):
@@ -79,7 +79,7 @@ class NewFridge(webapp2.RequestHandler):
         self.response.write(template.render())
 
 class FridgeHome(webapp2.RequestHandler):
-    def get(self):
+    def post(self):
         template = JINJA_ENVIRONMENT.get_template('templates/fridgeHome.html')
         self.response.write(template.render())
 
@@ -117,14 +117,20 @@ class FridgePage(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('templates/fridgePage.html')
         self.response.out.write(template.render(fridgeposts = fridgeposts))
 
+class ThankYou(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('templates/thankyou.html')
+        self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
+    ('/Login', LoginHandler),
     ('/newUser', NewUser),
     ('/newFridge', NewFridge),
     ('/FamilyID', FamilyID),
     ('/PersonID', PersonID),
     ('/Fridge', FridgePage),
-    ('fridgeHome', FridgeHome),
+    ('/fridgeHome', FridgeHome),
+    ('/ThankYou', ThankYou),
 
 ], debug=True)

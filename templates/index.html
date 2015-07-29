@@ -1,26 +1,26 @@
-<html>
+<html id="welcomepage">
   <head>
     <title>KitchenFridge - Home</title>
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Oswald|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <h1>Sign In</h1>
-    <br>
-    <form method "post" action="/fridgeHome">
-      Enter Email Address <input type = "text" name= "Username"> <br>
-      Enter Password <input type = "password" name= "Password"> <br>
-      <input type = "submit">
-    </form>
-    <br>
-    <h2>First Time?</h2>
-    <br>
-    <br>
-
-    <form method="get" action="/newFridge">
-      <input type="submit" value="Don't have a key?">
-    </form>
-
-    <form method="get" action="/newUser">
-      <input type="submit" value="Already have a key?">
-    </form>
+    <div id="big">
+      <div id="left">
+        <h1>Sign In</h1>
+        <br>
+        <form method="get" action="/Login">
+          <input type = "submit" value="CONTINUE TO YOUR FRIDGES">
+        </form>
+        <br>
+      </div>
+      <div id="right">
+        <h2>Welcome to Kitchen Fridge</h2>
+        <p>
+          Kitchen Fridge is a new platform for families to connect on the go.
+          Take all the important things hung on the kitchen fridge with you.
+        </p>
+      </div>
+    </div>
   </body>
 </html>
