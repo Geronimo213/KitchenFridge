@@ -4,30 +4,21 @@
     <link href='http://fonts.googleapis.com/css?family=Oswald|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
   </head>
   <body>
-<<<<<<< HEAD
-    <h1> Home </h1>
-    <h2> User's Fridges Go Here </h2>
-    <form method="post" action="/fridgeHome">
-      Add a fridge: <input type="text" name="join_fridge">
-      <input type="submit" value="Join Fridge">
-    </form>
-
-    <ul>
-      {% for fridge in fridges_list:%}
-          <li><a href="/Fridge?fridge={{fridge}}">{{fridge}}</a></li>
-      {% endfor %}
-    </ul>
-
-=======
     <div id="fridgehomediv">
       <img src="/styles/logo.png" id="fridgehomelogo">
       <div id="pickfridge">
         <h2> User's Fridges Go Here </h2>
-        <form method="get" action="/Fridge">
-          <input type="submit" value="To the Fridge">
+        <form method="post" action="/fridgeHome" style="font-family: 'Oswald', sans-serif">
+          Add a fridge: <input type="text" name="join_fridge">
+          <input type="submit" value="Join Fridge">
         </form>
+
+        <ul>
+          {% for fridge in fridges_list:%}
+              <li><a href="/Fridge?fridge={{fridge}}">{{fridge}}</a></li>
+          {% endfor %}
+        </ul>
       </div>
     </div>
->>>>>>> a6c11ab43dd7506f648c2c9a9a76f0f12261f612
   </body>
 </html>

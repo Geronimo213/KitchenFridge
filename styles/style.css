@@ -16,6 +16,7 @@
 #left{
   position: absolute;
   left: 5%;
+  width: 19%;
   background-color: grey;
   opacity: 0.9;
   top: 10%;
@@ -25,6 +26,7 @@
 #right{
   position: absolute;
   right: 5%;
+  width: 60%;
   background-color: grey;
   opacity: 0.9;
   top: 10%;
@@ -36,7 +38,7 @@
 }
 
 #fridge{
-  background-image: url(/styles/fridge.jpeg);
+  background-image: url(/styles/betterfridge.jpg);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -53,8 +55,10 @@
 }
 
 #fridgehomelogo{
-  width: 12%;
-  left: 45%;
+  position: relative;
+  width: 15%;
+  left: 41%;
+  padding: 1.5%;
 }
 
 #fridgehomediv{
