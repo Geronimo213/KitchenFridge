@@ -20,8 +20,8 @@
         </form>
 
         <ul>
-          {% for fridge in fridges_list:%}
-              <li><a href="/Fridge?fridge={{fridge}}">{{fridge}}</a></li>
+          {% for key, value in fridge_dictionary.items():%}
+              <li><a href="/Fridge?fridge={{key}}">{{value}}</a></li>
           {% endfor %}
         </ul>
       </div>
