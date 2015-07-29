@@ -1,14 +1,20 @@
-<html>
+<html id="thankyou">
   <head>
     <title>KitchenFridge - Thank You</title>
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Oswald|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <h1>You're all set!</h1>
-    <br>
-    <br>
-    <!-- this form will redirect to the login page. Which is a WIP -->
-    <form action="/fridgeHome" method="get">
-      <input type="submit" value="Proceed to Login">
-    </form>
+    <div id="bigthankyou">
+    <img src="/styles/logo.png" id="fridgehomelogo">
+      <div id="saythankyou">
+        <h1>3. GET YOUR FRIDGE ON</h1>
+        <p id="thankyoupar">You're all set! You have successfully created a new fridge. Your new fridge will appear in your navigation home page. Please click the "FINISH" button to get to your navigation home page. </p>
+        <!-- this form will redirect to the login page. Which is a WIP -->
+        <form action="/fridgeHome" method="get">
+          <input type="submit" value="FINISH">
+        </form>
+      </div>
+    </div>
   </body>
 </html>

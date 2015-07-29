@@ -1,12 +1,22 @@
-<html>
+<html id="newfridge">
   <head>
     <title>KitchenFridge - Create a Fridge</title>
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Oswald|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <form action="FamilyID" method="post">
-      Fridge Name: <input type="text" name="fridge_name" required="on">
-      <br>
-      <br>
-      <input type="submit" value="Create Fridge">
-  </body>
+    <div id="bignewfridge">
+      <img src="/styles/logo.png" id="fridgehomelogo">
+        <div id="makenewfridge">
+        <h1>1. CREATE NEW FRIDGE </h1>
+        <h2>Please enter the name of your new fridge</h2>
+        <p id="newfridgepar">Once you have entered your desired name, click the "Create Fridge Button"</p>
+        <form action="FamilyID" method="post" style="font-family: 'Oswald', sans-serif">
+          Fridge Name: <input type="text" name="fridge_name" required="on">
+          <br>
+          <br>
+          <input type="submit" value="Create Fridge">
+        </div>
+      </div>
+    </body>
 </html>

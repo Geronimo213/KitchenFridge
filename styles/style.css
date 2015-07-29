@@ -48,6 +48,21 @@
   opacity: 0.8;
 }
 
+#newfridge{
+  background-image: url(/styles/grey.jpg);
+  opacity: 0.8;
+}
+
+#familyid{
+  background-image: url(/styles/grey.jpg);
+  opacity: 0.8;
+}
+
+#thankyou{
+  background-image: url(/styles/grey.jpg);
+  opacity: 0.8;
+}
+
 #homelogopic{
   position: absolute;
   width: 12%;
@@ -67,6 +82,61 @@
   left: 10%;
   background-color: #C4BFBC;
   opacity: 0.9;
+  min-height: 80%;
+}
+
+#bignewfridge{
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  background-color: #E8854F;
+  opacity: 0.9;
+  min-height: 80%;
+}
+
+#bigfamilyid{
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  background-color: #E8854F;
+  opacity: 0.9;
+  min-height: 80%;
+}
+
+#bigthankyou{
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  background-color: #E8854F;
+  opacity: 0.9;
+  min-height: 80%;
+}
+
+#makenewfridge{
+  position: relative;
+  width: 70%;
+  left: 15%;
+  background-color: white;
+  text-align: center;
+  min-height: 80%;
+}
+
+#saythankyou{
+  position: relative;
+  width: 70%;
+  left: 15%;
+  background-color: white;
+  text-align: center;
+  min-height: 80%;
+}
+
+#getnewidbox{
+  position: relative;
+  width: 70%;
+  left: 15%;
+  background-color: white;
+  text-align: center;
+  min-height: 80%;
 }
 
 #pickfridge{
@@ -75,12 +145,43 @@
   left: 15%;
   background-color: white;
   text-align: center;
+  min-height: 80%;
+}
+
+#newfridgepar{
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 16px;
+  color: black;
+}
+
+#thankyoupar{
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 16px;
+  color: black;
+}
+
+.navpar{
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 16px;
+  color: black;
+}
+
+#therealid{
+  background-color: #F05C0C;
+}
+
+.headers{
+  background-color: #F05C0C;
 }
 
 p{
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 16px;
   color: white;
+}
+
+h3{
+  font-family: 'Oswald', sans-serif;
 }
 
 h2{

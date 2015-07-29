@@ -1,5 +1,6 @@
 <html id="fridgehome">
   <head>
+    <title>KitchenFridge - Navigation</title>
     <link rel="stylesheet" type="text/css" href="/styles/style.css">
     <link href='http://fonts.googleapis.com/css?family=Oswald|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
   </head>
@@ -7,25 +8,19 @@
     <div id="fridgehomediv">
       <img src="/styles/logo.png" id="fridgehomelogo">
       <div id="pickfridge">
-        <h2> User's Fridges Go Here </h2>
-<<<<<<< HEAD
-        
-        <form method="get" action="/newFridge">
+        <h1>FRIDGE NAVIGATION</h1>
+        <h3 class="headers">CREATE A NEW FRIDGE</h3>
+        <p class="navpar">In order to create a new fridge for others to join, please click the "New Fridge" button and follow the instructions given.<p>
+        <form method="get" action="/newFridge" style="font-family: 'Oswald', sans-serif">
             <input type="submit" value="New Fridge">
         </form>
-
-        <form method="post" action="/fridgeHome">
-          Add a fridge: <input type="text" name="join_fridge">
-          <input type="submit" value="Join Fridge">
-        </form>
-
-=======
+        <h3 class="headers">JOIN A PRE-EXISTING FRIDGE</h3>
+        <p class="navpar">If you were given a fridge ID and are looking to join a fridge, you are in the right place! Please enter the Fridge ID below, double check that it is the correct key, and then click the "Join Fridge" button. Your recently joined fridge should then appear in the "YOUR FRIDGES" section of this navigation pane.<p> 
         <form method="post" action="/fridgeHome" style="font-family: 'Oswald', sans-serif">
           Add a fridge: <input type="text" name="join_fridge">
           <input type="submit" value="Join Fridge">
         </form>
-
->>>>>>> 9e6d8d8f57a3c988c655d0b8427ecc6454a0bb30
+        <h3 class="headers">YOUR FRIDGES</h3>
         <ul>
           {% for fridge in fridges_list:%}
               <li><a href="/Fridge?fridge={{fridge}}">{{fridge}}</a></li>

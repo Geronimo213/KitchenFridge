@@ -1,20 +1,23 @@
-<html>
+<html id="familyid">
   <head>
     <title>KitchenFridge - FamilyID</title>
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Oswald|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <!-- This p will display the fridge FamilyID from the FamilyID handler in main.py -->
-    <h1>{{Family_ID}}</h1>
-    <br>
-    <br>
-    <h2>Share this ID to let others join your fridge!</h2>
-    <br>
-    <br>
-    <!-- below are two different forms. The first redirects to login. Second redirects to New User -->
-    <form action="/FamilyID" method="get">
-      <button type="submit" name="Family_ID" value="{{Family_ID}}">Proceed to Your Fridges</button>
-    </form>
-
-
+    <div id="bigfamilyid">
+      <img src="/styles/logo.png" id="fridgehomelogo">
+      <div id="getnewidbox">
+        <!-- This p will display the fridge FamilyID from the FamilyID handler in main.py -->
+        <h1>2. COPY DOWN YOUR ID</h1>
+        <p id="newfridgepar">Below is your Fridge ID. Please copy it down and keep it in a safe place. This will allow others to join the fridge you have just created. Once you have finished copying it down, please click the "NEXT" button to proceed.</p>
+        <h2 id="therealid">{{Family_ID}}</h2>
+        <h3>Share this ID to let others join your fridge!</h3>
+        <!-- below are two different forms. The first redirects to login. Second redirects to New User -->
+        <form action="/FamilyID" method="get">
+          <button type="submit" name="Family_ID" value="{{Family_ID}}">NEXT</button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
