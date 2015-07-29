@@ -8,24 +8,17 @@
       <img src="/styles/logo.png" id="fridgehomelogo">
       <div id="pickfridge">
         <h2> User's Fridges Go Here </h2>
-<<<<<<< HEAD
-        
+
         <form method="get" action="/newFridge">
             <input type="submit" value="New Fridge">
         </form>
 
-        <form method="post" action="/fridgeHome">
-          Add a fridge: <input type="text" name="join_fridge">
-          <input type="submit" value="Join Fridge">
-        </form>
 
-=======
         <form method="post" action="/fridgeHome" style="font-family: 'Oswald', sans-serif">
           Add a fridge: <input type="text" name="join_fridge">
           <input type="submit" value="Join Fridge">
         </form>
 
->>>>>>> 9e6d8d8f57a3c988c655d0b8427ecc6454a0bb30
         <ul>
           {% for fridge in fridges_list:%}
               <li><a href="/Fridge?fridge={{fridge}}">{{fridge}}</a></li>
