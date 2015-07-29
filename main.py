@@ -102,7 +102,7 @@ class FridgeHome(webapp2.RequestHandler):
 
         for fridge in fridges_list:
             unnamed_fridge = Family.get_by_id(int(fridge))
-            fridge_nicknames.append(str(unnamed_fridge.fridge_name))
+            fridge_nicknames.append(str(unnamed_fridge.fridge_name)
             logging.warning(str(fridge_nicknames))
 
         fridge_dictionary = dict(zip(fridges_list, fridge_nicknames))
