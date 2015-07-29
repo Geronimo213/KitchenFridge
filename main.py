@@ -77,7 +77,7 @@ class NewFridge(webapp2.RequestHandler):
         self.response.write(template.render())
 
 class FridgeHome(webapp2.RequestHandler):
-    def post(self):
+    def get(self):
         template = JINJA_ENVIRONMENT.get_template('templates/fridgeHome.html')
         self.response.write(template.render())
 
@@ -117,7 +117,6 @@ class FridgePage(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('templates/fridgePage.html')
         self.response.out.write(template.render(fridgeposts = fridgeposts))
 
-<<<<<<< HEAD
 class ThankYou(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('templates/thankyou.html')
