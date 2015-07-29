@@ -2,8 +2,16 @@
   <body>
     <h1> Home </h1>
     <h2> User's Fridges Go Here </h2>
-    <form method="get" action="/Fridge">
-      <input type="submit" value="To the Fridge">
+    <form method="post" action="/fridgeHome">
+      Add a fridge: <input type="text" name="join_fridge">
+      <input type="submit" value="Join Fridge">
     </form>
+
+    <ul>
+      {% for fridge in fridges_list:%}
+          <li><a href="/Fridge?fridge={{fridge}}">{{fridge}}</a></li>
+      {% endfor %}
+    </ul>
+
   </body>
 </html>

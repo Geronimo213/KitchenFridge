@@ -42,6 +42,9 @@ class Person(ndb.Model):
 class User(ndb.Model):
     thing = ndb.KeyProperty()
 
+class UserAccount(ndb.Model):
+    fridge_list=ndb.StringProperty(repeated=True)
+
 
 ##manually creates a user in the database
 class MainHandler(webapp2.RequestHandler):
@@ -78,8 +81,31 @@ class NewFridge(webapp2.RequestHandler):
 
 class FridgeHome(webapp2.RequestHandler):
     def get(self):
+
+        user = users.get_current_user()
+
+        global fridges_list
+        fridges_list = []
+
+        global userProfile
+        userProfile = UserAccount.get_by_id(user.email())
+        
+        if userProfile:
+            fridges_list = userProfile.fridge_list
+        else:
+            new_user = UserAccount(id=user.email(), fridge_list=[])
+            new_user.put()
+            userProfile = UserAccount.get_by_id(user.email())
+
         template = JINJA_ENVIRONMENT.get_template('templates/fridgeHome.html')
-        self.response.write(template.render())
+        self.response.write(template.render(fridges_list = fridges_list))
+        ##self.response.write("<h2>" + user.email() + "</h2>")
+    def post(self):
+        fridge_to_join = str(self.request.get('join_fridge'))
+        fridges_list.append(fridge_to_join)
+        userProfile.fridge_list = fridges_list
+        userProfile.put()
+        self.get()
 
 
 
