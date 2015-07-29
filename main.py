@@ -89,7 +89,7 @@ class FridgeHome(webapp2.RequestHandler):
 
         global userProfile
         userProfile = UserAccount.get_by_id(user.email())
-        
+
         if userProfile:
             fridges_list = userProfile.fridge_list
         else:
@@ -121,6 +121,22 @@ class FamilyID(webapp2.RequestHandler):
         template = jinja_environment.get_template('templates/FamilyID.html')
         self.response.write(template.render({'Family_ID': nameforFID_key.id()}))
 
+    def get(self):
+        user = users.get_current_user()
+
+        userProfile = UserAccount.get_by_id(user.email())
+        user_email = users.get_current_user().nickname()
+
+        fridges_list = userProfile.fridge_list
+
+        fridges_list.append((self.request.get('Family_ID')))
+
+        userProfile.fridge_list = fridges_list
+        userProfile.put()
+
+        template = JINJA_ENVIRONMENT.get_template('templates/thankyou.html')
+        self.response.write(template.render({'user_email': user_email}))
+
 class PersonID(webapp2.RequestHandler):
     def post(self):
         fridge_key = ndb.Key(Family, int(self.request.get("fridge_key")))
@@ -145,8 +161,20 @@ class FridgePage(webapp2.RequestHandler):
 
 class ThankYou(webapp2.RequestHandler):
     def get(self):
+        user = users.get_current_user()
+
+        userProfile = UserAccount.get_by_id(user.email())
+        user_email = users.get_current_user().nickname()
+
+        fridges_list = userProfile.fridge_list
+
+        fridges_list.append((self.request.get('Family_ID')))
+
+        userProfile.fridge_list = fridges_list
+        userProfile.put()
+
         template = JINJA_ENVIRONMENT.get_template('templates/thankyou.html')
-        self.response.write(template.render())
+        self.response.write(template.render({'user_email': user_email}))
 
 
 app = webapp2.WSGIApplication([
