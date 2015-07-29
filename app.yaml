@@ -14,7 +14,7 @@ handlers:
 
 - url: /styles
   static_dir: styles
-  
+
 - url: .*
   script: main.app
   login: required
