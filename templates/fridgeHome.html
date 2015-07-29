@@ -15,15 +15,15 @@
             <input type="submit" value="New Fridge">
         </form>
         <h3 class="headers">JOIN A PRE-EXISTING FRIDGE</h3>
-        <p class="navpar">If you were given a fridge ID and are looking to join a fridge, you are in the right place! Please enter the Fridge ID below, double check that it is the correct key, and then click the "Join Fridge" button. Your recently joined fridge should then appear in the "YOUR FRIDGES" section of this navigation pane.<p> 
+        <p class="navpar">If you were given a fridge ID and are looking to join a fridge, you are in the right place! Please enter the Fridge ID below, double check that it is the correct key, and then click the "Join Fridge" button. Your recently joined fridge should then appear in the "YOUR FRIDGES" section of this navigation pane.<p>
         <form method="post" action="/fridgeHome" style="font-family: 'Oswald', sans-serif">
           Add a fridge: <input type="text" name="join_fridge">
           <input type="submit" value="Join Fridge">
         </form>
         <h3 class="headers">YOUR FRIDGES</h3>
         <ul>
-          {% for fridge in fridges_list:%}
-              <li><a href="/Fridge?fridge={{fridge}}">{{fridge}}</a></li>
+          {% for key, value in fridge_dictionary.items():%}
+              <li><a href="/Fridge?fridge={{key}}">{{value}}</a></li>
           {% endfor %}
         </ul>
       </div>

@@ -97,8 +97,18 @@ class FridgeHome(webapp2.RequestHandler):
             new_user.put()
             userProfile = UserAccount.get_by_id(user.email())
 
+
+        fridge_nicknames = []
+
+        for fridge in fridges_list:
+            unnamed_fridge = Family.get_by_id(int(fridge))
+            fridge_nicknames.append(str(unnamed_fridge.fridge_name))
+            logging.warning(str(fridge_nicknames))
+
+        fridge_dictionary = dict(zip(fridges_list, fridge_nicknames))
+        logging.warning(fridge_dictionary)
         template = JINJA_ENVIRONMENT.get_template('templates/fridgeHome.html')
-        self.response.write(template.render(fridges_list = fridges_list))
+        self.response.write(template.render(fridge_dictionary = fridge_dictionary))
         ##self.response.write("<h2>" + user.email() + "</h2>")
     def post(self):
         fridge_to_join = str(self.request.get('join_fridge'))
