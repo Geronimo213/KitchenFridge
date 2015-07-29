@@ -31,7 +31,7 @@ jinja_environment = jinja2.Environment(loader=
 ##creates a new fridge
 class Family(ndb.Model):
     fridge_name = ndb.StringProperty(required=True)
-    posts = ndb.StringProperty(repeated = True) ##To do more than one post
+    posts = ndb.PickleProperty() ##To do more than one post
 
 ##creates a new person with access to a certain fridge
 class Person(ndb.Model):
