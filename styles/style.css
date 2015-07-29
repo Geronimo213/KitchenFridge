@@ -16,11 +16,19 @@
 #left{
   position: absolute;
   left: 5%;
+  background-color: grey;
+  opacity: 0.9;
+  top: 10%;
+  padding: 1.5%;
 }
 
 #right{
   position: absolute;
   right: 5%;
+  background-color: grey;
+  opacity: 0.9;
+  top: 10%;
+  padding: 1.5%;
 }
 
 #post_body{
@@ -33,9 +41,42 @@
   background-size: cover;
 }
 
+#fridgehome{
+  background-image: url(/styles/orange1.jpg);
+  opacity: 0.8;
+}
+
+#homelogopic{
+  position: absolute;
+  width: 12%;
+  left: 45%;
+}
+
+#fridgehomelogo{
+  width: 12%;
+  left: 45%;
+}
+
+#fridgehomediv{
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  background-color: #C4BFBC;
+  opacity: 0.9;
+}
+
+#pickfridge{
+  position: relative;
+  width: 70%;
+  left: 15%;
+  background-color: white;
+  text-align: center;
+}
+
 p{
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 16px;
+  color: white;
 }
 
 h2{

@@ -1,5 +1,10 @@
-<html>
+<html id="fridgehome">
+  <head>
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Oswald|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  </head>
   <body>
+<<<<<<< HEAD
     <h1> Home </h1>
     <h2> User's Fridges Go Here </h2>
     <form method="post" action="/fridgeHome">
@@ -13,5 +18,16 @@
       {% endfor %}
     </ul>
 
+=======
+    <div id="fridgehomediv">
+      <img src="/styles/logo.png" id="fridgehomelogo">
+      <div id="pickfridge">
+        <h2> User's Fridges Go Here </h2>
+        <form method="get" action="/Fridge">
+          <input type="submit" value="To the Fridge">
+        </form>
+      </div>
+    </div>
+>>>>>>> a6c11ab43dd7506f648c2c9a9a76f0f12261f612
   </body>
 </html>
