@@ -50,6 +50,11 @@
   opacity: 0.8;
 }
 
+#delete{
+  background-image: url(/styles/orange1.jpg);
+  opacity: 0.8;
+}
+
 #newfridge{
   background-image: url(/styles/grey.jpg);
   opacity: 0.8;
@@ -79,6 +84,15 @@
 }
 
 #fridgehomediv{
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  background-color: #C4BFBC;
+  opacity: 0.9;
+  min-height: 80%;
+}
+
+#fridgedeletediv{
   position: absolute;
   width: 80%;
   left: 10%;
@@ -142,6 +156,15 @@
 }
 
 #pickfridge{
+  position: relative;
+  width: 70%;
+  left: 15%;
+  background-color: white;
+  text-align: center;
+  min-height: 80%;
+}
+
+#postdeleter{
   position: relative;
   width: 70%;
   left: 15%;
