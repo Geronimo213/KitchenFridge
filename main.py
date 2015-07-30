@@ -233,6 +233,8 @@ class DeletePost(webapp2.RequestHandler):
         self.response.write(template.render(fridge_id = current_fridge_ID))
 
 
+
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/Login', LoginHandler),
