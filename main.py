@@ -101,7 +101,7 @@ class FridgeHome(webapp2.RequestHandler):
 
         fridge_nicknames = []
 
-        if fridges_list != []:
+        if fridges_list != ['']:
             for fridge in fridges_list:
                 unnamed_fridge = Family.get_by_id(int(fridge))
                 logging.warning(unnamed_fridge)
@@ -161,15 +161,19 @@ class PersonID(webapp2.RequestHandler):
 
 class FridgePage(webapp2.RequestHandler):
     def get(self):
+        global current_FridgeID
         current_FridgeID = self.request.get('fridge')
+
         global current_fridge
         current_fridge = Family.get_by_id(int(current_FridgeID))
 
         global fridgeposts
         fridgeposts = current_fridge.posts
 
+        fridge_name = current_fridge.fridge_name
+
         template = JINJA_ENVIRONMENT.get_template('templates/fridgePage.html')
-        self.response.write(template.render(fridgeposts = fridgeposts))
+        self.response.write(template.render(fridgeposts = fridgeposts, fridge_name = fridge_name, current_fridge = current_FridgeID))
     def post(self):
         new_post = self.request.get('post')
         fridgeposts.append(str(new_post))
@@ -177,9 +181,11 @@ class FridgePage(webapp2.RequestHandler):
         current_fridge.posts = fridgeposts
         current_fridge.put()
 
+        fridge_name = current_fridge.fridge_name
+
         logging.info(fridgeposts)
-        template = JINJA_ENVIRONMENT.get_template('templates/fridgePage.html')
-        self.response.out.write(template.render(fridgeposts = fridgeposts))
+
+        self.get()
 
 class ThankYou(webapp2.RequestHandler):
     def get(self):
@@ -198,6 +204,34 @@ class ThankYou(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('templates/thankyou.html')
         self.response.write(template.render({'user_email': user_email}))
 
+class DeletePost(webapp2.RequestHandler):
+    def get(self):
+        current_fridge_ID = self.request.get('current_fridge')
+
+        post_to_delete = self.request.get('post')
+        current_fridge = Family.get_by_id(int(current_fridge_ID))
+        logging.warning(current_fridge)
+
+        current_list = current_fridge.posts
+
+        post_to_delete.replace('+', ' ')
+        post_to_delete.replace('%21', '!')
+        str(post_to_delete)
+        logging.warning(post_to_delete)
+
+        #for n,i in enumerate(current_list):
+        #    if i == '+':
+        #        a[n] = ' '
+        #    if i == '%21':
+        #        a[n] = '!'
+
+        current_list.remove(post_to_delete)
+        current_fridge.posts = current_list
+        current_fridge.put()
+
+        template = JINJA_ENVIRONMENT.get_template('templates/deleted.html')
+        self.response.write(template.render(fridge_id = current_fridge_ID))
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
@@ -210,5 +244,6 @@ app = webapp2.WSGIApplication([
     ('/Fridge', FridgePage),
     ('/fridgeHome', FridgeHome),
     ('/ThankYou', ThankYou),
+    ('/deletePost', DeletePost),
 
 ], debug=True)
