@@ -130,7 +130,7 @@ fridgeposts = [] ##just so it works
 class FamilyID(webapp2.RequestHandler):
     def post(self):
         nameforFID = self.request.get("fridge_name")
-        nameforFID_key = (Family(fridge_name = nameforFID, posts = fridgeposts).put())
+        nameforFID_key = (Family(fridge_name = nameforFID).put())
         template = jinja_environment.get_template('templates/FamilyID.html')
         self.response.write(template.render({'Family_ID': nameforFID_key.id()}))
 
