@@ -176,6 +176,27 @@
   background-color: #F05C0C;
 }
 
+#postit{
+  background-image: url(/styles/orangepaper.jpeg);
+  position: relative;
+  min-height: 10%;
+  width: 20%;
+  display: inline-block;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 16px;
+  color: black;
+  padding: 5%;
+  padding-left: 2%;
+  padding-right: 3%;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  margin: 25px;
+}
+
+#lightbulb{
+  float: inherit;
+}
+
 p{
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 16px;

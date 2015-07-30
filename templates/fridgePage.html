@@ -6,17 +6,15 @@
       <link href='http://fonts.googleapis.com/css?family=Oswald|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <div id="post_body" style="position: absolute; width: 70%; left: 15%; text-align: center;">
-
-        <h1>Welcome to your fridge!</h1>
-
+    <div class="post_body" style="position: absolute; width: 70%; left: 15%; top: 12%; text-align: center; min-height: 80%;">
+      <h2>Welcome</h2>
         {% for post in fridgeposts:%}
-          <div>
+          <div id="postit">
             {{post}}
           </div>
         {% endfor %}
 
-      </div>
+    </div>
       <div id="side_menu" style="position: absolute; width: 15%; float: left;">
         <form method="get" action="/fridgeHome">
           <input type="submit" value="Back to Navigation Page">
