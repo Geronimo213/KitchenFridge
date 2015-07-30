@@ -92,6 +92,7 @@ class FridgeHome(webapp2.RequestHandler):
 
         if userProfile:
             fridges_list = userProfile.fridge_list
+            logging.warning(fridges_list)
         else:
             new_user = UserAccount(id=user.email(), fridge_list=[])
             new_user.put()
@@ -102,8 +103,13 @@ class FridgeHome(webapp2.RequestHandler):
 
         for fridge in fridges_list:
             unnamed_fridge = Family.get_by_id(int(fridge))
-            fridge_nicknames.append(str(unnamed_fridge.fridge_name)
+            fridge_nicknames.append(str(unnamed_fridge.fridge_name))
             logging.warning(str(fridge_nicknames))
+        if fridges_list != []:
+            for fridge in fridges_list:
+                unnamed_fridge = Family.get_by_id(int(fridge))
+                fridge_nicknames.append(str(unnamed_fridge.fridge_name))
+                logging.warning(str(fridge_nicknames))
 
         fridge_dictionary = dict(zip(fridges_list, fridge_nicknames))
         logging.warning(fridge_dictionary)
