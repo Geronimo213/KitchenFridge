@@ -7,10 +7,16 @@
   </head>
   <body>
     <div class="post_body" style="position: absolute; width: 70%; left: 15%; top: 12%; text-align: center; min-height: 80%;">
-      <h2>Welcome</h2>
+      <h1 id="fridge_name">{{fridge_name}}</h1>
         {% for post in fridgeposts:%}
           <div id="postit">
+
             {{post}}
+
+            <form method="get" action="/deletePost">
+              <button name="post" type="submit" value="{{post}}">Delete</button>
+              <input type="hidden" name="current_fridge" value={{current_fridge}}>
+            </form>
           </div>
         {% endfor %}
 
