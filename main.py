@@ -31,7 +31,7 @@ jinja_environment = jinja2.Environment(loader=
 ##creates a new fridge
 class Family(ndb.Model):
     fridge_name = ndb.StringProperty(required=True)
-    posts = ndb.PickleProperty() ##To do more than one post
+    posts = ndb.StringProperty(repeated=True) ##To do more than one post
 
 ##creates a new person with access to a certain fridge
 class Person(ndb.Model):
@@ -161,13 +161,22 @@ class PersonID(webapp2.RequestHandler):
 
 class FridgePage(webapp2.RequestHandler):
     def get(self):
+        current_FridgeID = self.request.get('fridge')
+        global current_fridge
+        current_fridge = Family.get_by_id(int(current_FridgeID))
+
         global fridgeposts
-        fridgeposts = ['This is the default message']
+        fridgeposts = current_fridge.posts
+
         template = JINJA_ENVIRONMENT.get_template('templates/fridgePage.html')
         self.response.write(template.render(fridgeposts = fridgeposts))
     def post(self):
         new_post = self.request.get('post')
         fridgeposts.append(str(new_post))
+
+        current_fridge.posts = fridgeposts
+        current_fridge.put()
+
         logging.info(fridgeposts)
         template = JINJA_ENVIRONMENT.get_template('templates/fridgePage.html')
         self.response.out.write(template.render(fridgeposts = fridgeposts))
@@ -176,11 +185,11 @@ class ThankYou(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
 
+
         userProfile = UserAccount.get_by_id(user.email())
         user_email = users.get_current_user().nickname()
 
         fridges_list = userProfile.fridge_list
-
         fridges_list.append((self.request.get('Family_ID')))
 
         userProfile.fridge_list = fridges_list
