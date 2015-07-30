@@ -23,7 +23,7 @@ from google.appengine.ext import ndb
 from google.appengine.api import users
 
 
-JINJA_ENVIRONMENT = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+JINJA_ENVIRONMENT = jinja2.Environment(extensions=['jinja2.ext.autoescape'], loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 jinja_environment = jinja2.Environment(loader=
     jinja2.FileSystemLoader(os.path.dirname(__file__)))
