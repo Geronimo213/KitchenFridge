@@ -100,9 +100,11 @@ class FridgeHome(webapp2.RequestHandler):
 
 
         fridge_nicknames = []
+
         if fridges_list != []:
             for fridge in fridges_list:
                 unnamed_fridge = Family.get_by_id(int(fridge))
+                logging.warning(unnamed_fridge)
                 fridge_nicknames.append(str(unnamed_fridge.fridge_name))
                 logging.warning(str(fridge_nicknames))
 
