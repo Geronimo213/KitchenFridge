@@ -216,6 +216,7 @@
   margin: 25px;
 }
 
+
 #postit_image{
   display: inline-block;
   background-image: url(/styles/orangepaper.jpeg);
@@ -233,6 +234,7 @@
   width: 100%;
   height: auto;
 }
+
 
 #lightbulb{
   float: inherit;
