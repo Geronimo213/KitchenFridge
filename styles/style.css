@@ -330,6 +330,11 @@ h1{
   font-family: 'Oswald', sans-serif;
 }
 
+.special{
+  font-family: 'Oswald', sans-serif;
+  background-color: #F05C0C;
+}
+
 #fridge_code{
   position: fixed;;
   bottom: 4%;
