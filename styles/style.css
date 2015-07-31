@@ -65,6 +65,11 @@
   opacity: 0.8;
 }
 
+#aboutuspage{
+  background-image: url(/styles/grey.jpg);
+  opacity: 0.8;
+}
+
 #thankyou{
   background-image: url(/styles/grey.jpg);
   opacity: 0.8;
@@ -167,10 +172,11 @@
 #postdeleter{
   position: relative;
   width: 70%;
-  left: 15%;
+  left: 10%;
   background-color: white;
   text-align: center;
   min-height: 80%;
+  padding: 5%;
 }
 
 #newfridgepar{
@@ -217,7 +223,66 @@
 }
 
 #lightbulb{
-  float: inherit;
+  position: absolute;
+  width: 2%;
+}
+
+#postdeleted{
+  font-family: 'Oswald', sans-serif;
+  background-color: #F05C0C;
+}
+
+.profpic{
+  width: 100%;
+  vertical-align: middle;
+}
+
+.leftpic{
+  display: inline-block;
+  position: relative;
+  width: 20%;
+  margin-bottom: 2em;
+
+
+
+}
+
+.rightbio{
+  display: inline-block;
+  position: relative;
+  background-color: #C4BFBC;
+  width: 49%;
+  padding: 2%;
+  left: 15%;
+  vertical-align: middle;
+
+}
+
+#candace{
+  position: relative;
+  min-height: 20%;
+  background-color: white;
+  opacity: 0.9;
+}
+
+#carly{
+  position: relative;
+  min-height: 20%;
+  background-color: white;
+  opacity: 0.9;
+}
+
+#geronimo{
+  position: relative;
+  min-height: 20%;
+}
+
+#bigaboutdiv{
+  position: absolute;
+  width: 70%;
+  left: 15%;
+  background-color: #E8854F;
+  opacity: .9;
 }
 
 p{

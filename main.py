@@ -232,6 +232,10 @@ class DeletePost(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('templates/deleted.html')
         self.response.write(template.render(fridge_id = current_fridge_ID))
 
+class AboutUs(webapp2.RequestHandler):
+    def get(self):
+        template = JINJA_ENVIRONMENT.get_template('templates/aboutus.html')
+        self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
@@ -245,5 +249,6 @@ app = webapp2.WSGIApplication([
     ('/fridgeHome', FridgeHome),
     ('/ThankYou', ThankYou),
     ('/deletePost', DeletePost),
+    ('/AboutUs', AboutUs),
 
 ], debug=True)
