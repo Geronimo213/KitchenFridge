@@ -222,6 +222,26 @@
   margin: 25px;
 }
 
+
+#postit_image{
+  display: inline-block;
+  background-image: url(/styles/orangepaper.jpeg);
+  position: relative;
+  min-width: 20%;
+  max-width: 30%;
+  min-height: 10%;
+  width: auto;
+  height: auto;
+  padding: 1%;
+  margin: 2%;
+}
+
+#postit_image img{
+  width: 100%;
+  height: auto;
+}
+
+
 #lightbulb{
   position: absolute;
   width: 2%;
@@ -301,4 +321,29 @@ h2{
 
 h1{
   font-family: 'Oswald', sans-serif;
+}
+
+#fridge_code{
+  position: fixed;;
+  bottom: 4%;
+  right: 2%;
+  color: darkorange;
+  z-index: 1000;
+}
+
+#side_menu{
+  position: fixed;
+  width: 15%;
+  min-height: 80%;
+  height: auto;
+}
+#side_menu input{
+  position: relative;
+  width: 100%;
+  height: 50px;
+}
+#remove_fridge{
+  position: fixed;
+  bottom: 3%;
+  right: 3%;
 }

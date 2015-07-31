@@ -32,6 +32,7 @@ jinja_environment = jinja2.Environment(loader=
 class Family(ndb.Model):
     fridge_name = ndb.StringProperty(required=True)
     posts = ndb.StringProperty(repeated=True) ##To do more than one post
+    image_posts = ndb.StringProperty(repeated=True)
 
 ##creates a new person with access to a certain fridge
 class Person(ndb.Model):
@@ -94,7 +95,7 @@ class FridgeHome(webapp2.RequestHandler):
             fridges_list = userProfile.fridge_list
             logging.warning(fridges_list)
         else:
-            new_user = UserAccount(id=user.email(), fridge_list=[])
+            new_user = UserAccount(id=user.email(), fridge_list=[], image_list=[])
             new_user.put()
             userProfile = UserAccount.get_by_id(user.email())
 
@@ -170,10 +171,13 @@ class FridgePage(webapp2.RequestHandler):
         global fridgeposts
         fridgeposts = current_fridge.posts
 
+        global image_list
+        image_list = current_fridge.image_posts
+
         fridge_name = current_fridge.fridge_name
 
         template = JINJA_ENVIRONMENT.get_template('templates/fridgePage.html')
-        self.response.write(template.render(fridgeposts = fridgeposts, fridge_name = fridge_name, current_fridge = current_FridgeID))
+        self.response.write(template.render(fridgeposts = fridgeposts, fridge_name = fridge_name, current_fridge = current_FridgeID, imageposts = image_list))
     def post(self):
         new_post = self.request.get('post')
         fridgeposts.append(str(new_post))
@@ -232,6 +236,69 @@ class DeletePost(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('templates/deleted.html')
         self.response.write(template.render(fridge_id = current_fridge_ID))
 
+    def post(self):
+        current_fridge_ID = self.request.get('current_fridge')
+        post_to_delete = self.request.get('post')
+        current_fridge = Family.get_by_id(int(current_fridge_ID))
+        logging.warning(current_fridge_ID)
+        current_list = current_fridge.image_posts
+
+        post_to_delete.replace('+', ' ')
+        post_to_delete.replace('%21', '!')
+        str(post_to_delete)
+
+        current_list.remove(post_to_delete)
+        current_fridge.image_posts = current_list
+        current_fridge.put()
+
+        template = JINJA_ENVIRONMENT.get_template('templates/deleted.html')
+        self.response.write(template.render(fridge_id = current_fridge_ID))
+
+class ImageHandler(webapp2.RequestHandler):
+    def post(self):
+
+        current_fridge_ID = self.request.get('current_fridge')
+        logging.warning(self.request.get('current_fridge'))
+
+        current_fridge = Family.get_by_id(int(current_fridge_ID))
+        image_list = current_fridge.image_posts
+
+        new_post = self.request.get('post')
+
+        image_list.append(str(new_post))
+
+        current_fridge.image_posts = image_list
+        current_fridge.put()
+
+        fridge_name = current_fridge.fridge_name
+
+
+        template = JINJA_ENVIRONMENT.get_template('templates/imagepost.html')
+        self.response.write(template.render(fridge_id = current_fridge_ID))
+
+class RemoveFridge(webapp2.RequestHandler):
+    def post(self):
+        current_fridge_ID = self.request.get('current_fridge')
+        logging.warning(self.request.get('current_fridge'))
+
+        current_fridge = Family.get_by_id(int(current_fridge_ID))
+        image_list = current_fridge.image_posts
+        fridge_name = current_fridge.fridge_name
+
+        current_user = users.get_current_user()
+
+        user_account = UserAccount.get_by_id(current_user.email())
+
+        fridge_list = user_account.fridge_list
+
+        fridge_list.remove(current_fridge_ID)
+
+        user_account.fridge_list = fridge_list
+        user_account.put()
+
+        template = JINJA_ENVIRONMENT.get_template('templates/fridgeremove.html')
+        self.response.write(template.render())
+
 class AboutUs(webapp2.RequestHandler):
     def get(self):
         template = JINJA_ENVIRONMENT.get_template('templates/aboutus.html')
@@ -250,5 +317,8 @@ app = webapp2.WSGIApplication([
     ('/ThankYou', ThankYou),
     ('/deletePost', DeletePost),
     ('/AboutUs', AboutUs),
+    ('/imageHandler', ImageHandler),
+    ('/removeFridge', RemoveFridge),
+
 
 ], debug=True)
