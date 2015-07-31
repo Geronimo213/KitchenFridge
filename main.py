@@ -95,7 +95,7 @@ class FridgeHome(webapp2.RequestHandler):
             fridges_list = userProfile.fridge_list
             logging.warning(fridges_list)
         else:
-            new_user = UserAccount(id=user.email(), fridge_list=[], image_list=[])
+            new_user = UserAccount(id=user.email(), fridge_list=[])
             new_user.put()
             userProfile = UserAccount.get_by_id(user.email())
 
@@ -180,16 +180,25 @@ class FridgePage(webapp2.RequestHandler):
         self.response.write(template.render(fridgeposts = fridgeposts, fridge_name = fridge_name, current_fridge = current_FridgeID, imageposts = image_list))
     def post(self):
         new_post = self.request.get('post')
-        fridgeposts.append(str(new_post))
+        fridge_ID = self.request.get('current_fridge')
 
-        current_fridge.posts = fridgeposts
+        current_fridge_ID = self.request.get('current_fridge')
+        logging.warning(self.request.get('current_fridge'))
+
+        current_fridge = Family.get_by_id(int(current_fridge_ID))
+        post_list = current_fridge.posts
+
+        new_post = self.request.get('post')
+
+        post_list.append(str(new_post))
+
+        current_fridge.posts = post_list
         current_fridge.put()
 
         fridge_name = current_fridge.fridge_name
 
-        logging.info(fridgeposts)
-
-        self.get()
+        template = JINJA_ENVIRONMENT.get_template('templates/imagepost.html')
+        self.response.write(template.render(fridge_id = current_fridge_ID))
 
 class ThankYou(webapp2.RequestHandler):
     def get(self):
