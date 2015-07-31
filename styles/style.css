@@ -262,9 +262,6 @@
   position: relative;
   width: 20%;
   margin-bottom: 2em;
-
-
-
 }
 
 .rightbio{
@@ -275,7 +272,6 @@
   padding: 2%;
   left: 15%;
   vertical-align: middle;
-
 }
 
 #candace{
@@ -327,15 +323,18 @@ h1{
   position: fixed;;
   bottom: 4%;
   right: 2%;
-  color: darkorange;
+  color: #F05C0C;
   z-index: 1000;
 }
 
 #side_menu{
   position: fixed;
   width: 15%;
-  min-height: 80%;
+  min-height: 20%;
   height: auto;
+  background-color: #F05C0C;
+  opacity: 0.9;
+  padding: 1%;
 }
 #side_menu input{
   position: relative;

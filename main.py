@@ -95,7 +95,7 @@ class FridgeHome(webapp2.RequestHandler):
             fridges_list = userProfile.fridge_list
             logging.warning(fridges_list)
         else:
-            new_user = UserAccount(id=user.email(), fridge_list=[], image_list=[])
+            new_user = UserAccount(id=user.email(), fridge_list=[])
             new_user.put()
             userProfile = UserAccount.get_by_id(user.email())
 
