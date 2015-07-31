@@ -1,10 +1,17 @@
-<html>
+<html id="delete">
   <head>
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Oswald|Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
   </head>
   <body>
-    <h1>POST DELETED!</h1>
-    <form method="get" action="/Fridge">
-      <button type="submit" name="fridge" value={{fridge_id}}>TAKE ME BACK TO MY FRIDGE!</button>
-    </form>
+    <div id="fridgedeletediv">
+      <a href="/"><img src="/styles/logo.png" id="fridgehomelogo"></a>
+      <div id=postdeleter>
+        <h1>POST DELETED!</h1>
+        <form method="get" action="/Fridge">
+          <button type="submit" name="fridge" value="{{fridge_id}}">TAKE ME BACK TO MY FRIDGE!</button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>

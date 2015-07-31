@@ -17,20 +17,22 @@
   position: absolute;
   left: 5%;
   width: 19%;
-  background-color: grey;
-  opacity: 0.9;
+  background-color: white;
+  opacity: 0.95;
   top: 10%;
   padding: 1.5%;
+  min-height: 60%;
 }
 
 #right{
   position: absolute;
   right: 5%;
   width: 60%;
-  background-color: grey;
-  opacity: 0.9;
+  background-color: white;
+  opacity: 0.95;
   top: 10%;
   padding: 1.5%;
+  min-height: 60%;
 }
 
 #post_body{
@@ -44,6 +46,11 @@
 }
 
 #fridgehome{
+  background-image: url(/styles/orange1.jpg);
+  opacity: 0.8;
+}
+
+#delete{
   background-image: url(/styles/orange1.jpg);
   opacity: 0.8;
 }
@@ -77,6 +84,15 @@
 }
 
 #fridgehomediv{
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  background-color: #C4BFBC;
+  opacity: 0.9;
+  min-height: 80%;
+}
+
+#fridgedeletediv{
   position: absolute;
   width: 80%;
   left: 10%;
@@ -148,6 +164,15 @@
   min-height: 80%;
 }
 
+#postdeleter{
+  position: relative;
+  width: 70%;
+  left: 15%;
+  background-color: white;
+  text-align: center;
+  min-height: 80%;
+}
+
 #newfridgepar{
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 16px;
@@ -174,10 +199,49 @@
   background-color: #F05C0C;
 }
 
+#postit{
+  background-image: url(/styles/orangepaper.jpeg);
+  position: relative;
+  min-height: 10%;
+  width: 20%;
+  display: inline-block;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 16px;
+  color: black;
+  padding: 5%;
+  padding-left: 2%;
+  padding-right: 3%;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  margin: 25px;
+}
+
+#postit_image{
+  display: inline-block;
+  background-image: url(/styles/orangepaper.jpeg);
+  position: relative;
+  min-width: 20%;
+  max-width: 30%;
+  min-height: 10%;
+  width: auto;
+  height: auto;
+  padding: 1%;
+  margin: 2%;
+}
+
+#postit_image img{
+  width: 100%;
+  height: auto;
+}
+
+#lightbulb{
+  float: inherit;
+}
+
 p{
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 16px;
-  color: white;
+  color: black;
 }
 
 h3{
