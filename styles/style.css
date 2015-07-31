@@ -34,6 +34,9 @@
   padding: 1.5%;
   min-height: 60%;
 }
+#right p{
+  position: relative;
+}
 
 #post_body{
   font-family: 'Open Sans Condensed', sans-serif;
@@ -255,6 +258,8 @@
 .profpic{
   width: 100%;
   vertical-align: middle;
+  border: 3px #F05C0C solid;
+
 }
 
 .leftpic{
@@ -262,9 +267,7 @@
   position: relative;
   width: 20%;
   margin-bottom: 2em;
-
-
-
+  left: 3%;
 }
 
 .rightbio{
@@ -275,7 +278,6 @@
   padding: 2%;
   left: 15%;
   vertical-align: middle;
-
 }
 
 #candace{
@@ -283,6 +285,7 @@
   min-height: 20%;
   background-color: white;
   opacity: 0.9;
+  border-top: 5px #F05C0C solid;
 }
 
 #carly{
@@ -290,11 +293,14 @@
   min-height: 20%;
   background-color: white;
   opacity: 0.9;
+  border-bottom: 5px #F05C0C solid;
 }
 
 #geronimo{
   position: relative;
   min-height: 20%;
+  border-top: 5px #F05C0C solid;
+  border-bottom: 5px #F05C0C solid;
 }
 
 #bigaboutdiv{
@@ -303,6 +309,7 @@
   left: 15%;
   background-color: #E8854F;
   opacity: .9;
+
 }
 
 p{
@@ -323,19 +330,27 @@ h1{
   font-family: 'Oswald', sans-serif;
 }
 
+.special{
+  font-family: 'Oswald', sans-serif;
+  background-color: #F05C0C;
+}
+
 #fridge_code{
   position: fixed;;
   bottom: 4%;
   right: 2%;
-  color: darkorange;
+  color: #F05C0C;
   z-index: 1000;
 }
 
 #side_menu{
   position: fixed;
   width: 15%;
-  min-height: 80%;
+  min-height: 20%;
   height: auto;
+  background-color: #F05C0C;
+  opacity: 0.9;
+  padding: 1%;
 }
 #side_menu input{
   position: relative;
@@ -346,4 +361,22 @@ h1{
   position: fixed;
   bottom: 3%;
   right: 3%;
+}
+
+.links:link{
+  position: relative;
+  text-decoration: none;
+  color: black;
+  width: 15%;
+}
+.links:visited{
+  text-decoration: none;
+  color: black;
+}
+.links:hover{
+  text-decoration: none;
+  color:#F05C0C;
+}
+#about_us{
+  position: relative;
 }
