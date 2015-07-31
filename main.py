@@ -261,6 +261,7 @@ class ImageHandler(webapp2.RequestHandler):
         logging.warning(self.request.get('current_fridge'))
 
         current_fridge = Family.get_by_id(int(current_fridge_ID))
+        image_list = current_fridge.image_posts
 
         new_post = self.request.get('post')
 
@@ -272,8 +273,31 @@ class ImageHandler(webapp2.RequestHandler):
         fridge_name = current_fridge.fridge_name
 
 
-        template = JINJA_ENVIRONMENT.get_template('templates/deleted.html')
+        template = JINJA_ENVIRONMENT.get_template('templates/imagepost.html')
         self.response.write(template.render(fridge_id = current_fridge_ID))
+
+class RemoveFridge(webapp2.RequestHandler):
+    def post(self):
+        current_fridge_ID = self.request.get('current_fridge')
+        logging.warning(self.request.get('current_fridge'))
+
+        current_fridge = Family.get_by_id(int(current_fridge_ID))
+        image_list = current_fridge.image_posts
+        fridge_name = current_fridge.fridge_name
+
+        current_user = users.get_current_user()
+
+        user_account = UserAccount.get_by_id(current_user.email())
+
+        fridge_list = user_account.fridge_list
+
+        fridge_list.remove(current_fridge_ID)
+
+        user_account.fridge_list = fridge_list
+        user_account.put()
+
+        template = JINJA_ENVIRONMENT.get_template('templates/fridgeremove.html')
+        self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
@@ -288,5 +312,6 @@ app = webapp2.WSGIApplication([
     ('/ThankYou', ThankYou),
     ('/deletePost', DeletePost),
     ('/imageHandler', ImageHandler),
+    ('/removeFridge', RemoveFridge),
 
 ], debug=True)

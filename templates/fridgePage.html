@@ -33,6 +33,18 @@
           </div>
         {% endfor %}
 
+        {% for post in listposts:%}
+          <div id="postit_image">
+
+            <img id="image_post" src="{{post}}">
+
+            <form method="post" action="/deletePost">
+              <button name="post" type="submit" value="{{post}}">Delete</button>
+              <input type="hidden" name="current_fridge" value={{current_fridge}}>
+            </form>
+          </div>
+        {% endfor %}
+
 
     </div>
       <div id="side_menu" style="position: absolute; width: 15%; float: left;">
@@ -43,7 +55,7 @@
 
         <form method="post" action="/Fridge">
           <input type="text" name="post">
-          <input type="submit" value="Post it!">
+          <input type="submit" value="Post Note!">
         </form>
 
         <form method="post" action="/imageHandler">
@@ -52,6 +64,10 @@
           <input type="hidden" name="current_fridge" value="{{current_fridge}}">
         </form>
       </div>
+      <h2 id="fridge_code">Fridge ID: {{current_fridge}}</h2>
+      <form method="post" action="/removeFridge">
+        <button id="remove_fridge" type="submit" value="{{current_fridge}}" name="current_fridge">REMOVE FRIDGE</button>
+      </form>
   </body>
 </html>
 {% endautoescape %}
